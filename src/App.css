@@ -1,0 +1,79 @@
+.main{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#Jarvis{
+  height:50%;
+}
+span{
+  font-size: 2vmax;
+  background:linear-gradient(to right,rgb(31, 204, 195),rgb(219, 21, 203));
+  color:transparent;
+  background-clip: text;
+}
+.btn{
+  width: 150px;
+  height: 30px;
+  border: none;
+  outline: none;
+  background:linear-gradient(to right,rgb(31, 204, 195),rgb(219, 21, 203));
+  color: white;
+  border-radius: 35px;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  -o-border-radius: 35px;
+  font-size: 18px;
+  box-shadow: 2px 2px 70px rgb(31, 204, 195);
+}
+#speaking{
+  width: 100px;
+}
+p{
+  font-size: 3vmax;
+  color:white;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+/* Additional styles for the prompt text */
+.prompt-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+/* Ensure the image is responsive */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+#voice{
+  width:50vw;
+  height:80px;
+}
