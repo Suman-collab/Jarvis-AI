@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import  { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import run from '../gemini';
 
@@ -8,28 +8,32 @@ function Usercontext({ children }) {
     const [speaking, setSpeaking] = useState(false);
     let [prompt, setprompt] = useState("Listening");
     let [response, setResponse] = useState(false);
+    let [responseTime, setResponseTime] = useState(0);
 
     function speak(text) {
         let text_speak = new SpeechSynthesisUtterance(text);
         text_speak.volume = 1;
         text_speak.rate = 1;
         text_speak.pitch = 1;
-        text_speak.lang = 'en';
+        text_speak.lang = 'en-US';
         window.speechSynthesis.speak(text_speak);
     }
 
     async function aiResponse(prompt) {
+        const startTime = Date.now();
         let text = await run(prompt);
-        let newtext=text.split("*")&&text.split("*")&&text.replace("google","Suman");
+        let newtext = text.replace(/google/gi, "Suman");
         setprompt(newtext);
         speak(newtext);
         setResponse(true);
-        console.log(text);
-        // Reset the response state and speaking state after processing
+        console.log(newtext);
         setTimeout(() => {
             setResponse(false);
             setSpeaking(false);
-        }, 6000);
+            const endTime = Date.now();
+            setResponseTime(endTime - startTime); 
+            console.log(`AI response time: ${endTime - startTime} ms`); 
+        }, 11000);
     }
 
     let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -41,18 +45,6 @@ function Usercontext({ children }) {
         setprompt(transcript);
         aiResponse(transcript);
     };
-// function takeCommand(command){
-//     if(command.include("open")&& command.include("youtube"))
-//     {
-//         window.open("https://www.youtube.com/","_blank");
-//     speak("Opening youtube");
-//     setTimeout(() => {
-//         setResponse(false);
-//     }, 3000)}
-//     else{
-//         aiResponse(command);
-//     }
-// }
 
     let value = {
         recognition,
@@ -61,7 +53,8 @@ function Usercontext({ children }) {
         prompt,
         setprompt,
         response,
-        setResponse
+        setResponse,
+        responseTime
     };
 
     return (

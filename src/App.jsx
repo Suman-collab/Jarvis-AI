@@ -5,9 +5,8 @@ import { CiMicrophoneOn } from "react-icons/ci";
 import { datacontext } from "./context/Usercontext";
 import speakimg from "./assets/speak.gif";
 import aiv from "./assets/aiVoice.gif";
-
 const App = () => {
-  const { recognition, speaking, setSpeaking, prompt, response } = useContext(datacontext);
+  const { recognition, speaking, setSpeaking, prompt, response, responseTime } = useContext(datacontext);
 
   return (
     <div>
